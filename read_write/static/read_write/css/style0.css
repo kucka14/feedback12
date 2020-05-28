@@ -1,0 +1,187 @@
+@keyframes zero-fifty {
+	from {width:100px;}
+	to {width:50vw;}
+}
+
+.zero-fifty {
+	animation-name:zero-fifty;
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes fifty-zero {
+	from {width:50vw;}
+	to {width:100px;}
+}
+
+.fifty-zero {
+	animation-name:fifty-zero;
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes fifty-hundred {
+	from {width:50vw;}
+	to {width:calc(100vw - 100px);}
+}
+
+.fifty-hundred {
+	animation-name:fifty-hundred;
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes hundred-fifty {
+	from {width:calc(100vw - 100px);}
+	to {width:50vw;}
+}
+
+.hundred-fifty {
+	animation-name:hundred-fifty;
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes slide-up {
+	from {margin-bottom:0px;}
+	50% {margin-bottom:140vh;}
+	to {margin-bottom:calc(100vh - 50px);}
+}
+
+.slide-up {
+	animation-name:slide-up;
+	animation-duration: 1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes slide-down {
+	from {margin-bottom:calc(100vh - 50px);}
+	50% {margin-bottom:140vh;}
+	to {margin-bottom:0px;}
+}
+
+.slide-down {
+	animation-name:slide-down;
+	animation-duration: 1s;
+	animation-fill-mode:forwards;
+}
+
+.header {
+	display:flex;
+	height:100px;
+}
+
+.header-left {
+	display:flex;
+	width:50vw;
+	flex-direction:column;
+}
+
+.header-right {
+	display:flex;
+	width:50vw;
+	flex-direction:column;
+}
+
+.header-left-top {
+	display:flex;
+	height:50%;
+	background-color:darkgreen;
+}
+
+.header-left-bottom {
+	display:flex;
+	height:50%;
+	background-color:navy;
+}
+
+.header-right-top {
+	display:flex;
+	height:50%;
+	background-color:navy;
+}
+
+.header-right-bottom {
+	display:flex;
+	height:50%;
+	background-color:darkgreen;
+}
+
+.header-left-top-text {
+	color:white;
+	margin-top:auto;
+	margin-left:auto;
+}
+
+.header-left-bottom-text {
+	color:white;
+	margin-bottom:auto;
+	margin-left:auto;
+}
+
+.header-right-top-text {
+	color:white;
+	margin-top:auto;
+	margin-right:auto;
+}
+
+.header-right-bottom-text {
+	color:white;
+	margin-bottom:auto;
+	margin-right:auto;
+}
+
+.main-page {
+	display:flex;
+	flex-direction:row;
+	height:calc(100vh - 100px);
+}
+
+.main-left {
+	display:flex;
+	background-color:darkgreen;
+	width:50vw;
+	justify-content:center;
+	align-items:center;
+}
+
+.main-right {
+	display:flex;
+	background-color:navy;
+	width:50vw;
+	justify-content:center;
+	align-items:center;
+}
+
+#main-left-content {
+	display:none;
+	position:absolute;
+	z-index:1;
+}
+
+#main-right-content {
+	display:none;
+	position:absolute;
+	z-index:1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

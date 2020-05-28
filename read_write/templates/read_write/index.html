@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<title>FB-12</title>
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="/static/read_write/css/style0.css">
+	
+		<script>
+	
+				function buttonChange(buttonId,growDirection) {
+					if (buttonId == "left-button") {
+						if (growDirection == "grow") {
+							var buttonValue = "Receive Feedback";
+						} else {
+							var buttonValue = ">>";
+						}
+					} else {
+						if (growDirection == "grow") {
+							var buttonValue = "Give Feedback";
+						} else {
+							var buttonValue = "<<";
+						}
+					}
+					var test = document.getElementById(buttonId).innerHTML=buttonValue;
+				}
+				
+				function fiftyZero(slider) {
+					var target = document.getElementById(slider);
+					target.classList.remove("zero-fifty");
+					target.classList.remove("hundred-fifty");
+					target.classList.remove("fifty-hundred");
+					target.classList.add("fifty-zero");
+				}
+				
+				function zeroFifty(slider) {
+					var target = document.getElementById(slider);
+					target.classList.remove("fifty-zero");
+					target.classList.remove("hundred-fifty");
+					target.classList.remove("fifty-hundred");
+					target.classList.add("zero-fifty");
+				}
+				
+				function hundredFifty(slider) {
+					var target = document.getElementById(slider);
+					target.classList.remove("zero-fifty");
+					target.classList.remove("fifty-zero");
+					target.classList.remove("fifty-hundred");
+					target.classList.add("hundred-fifty");
+				}
+				
+				function fiftyHundred(slider) {
+					var target = document.getElementById(slider);
+					target.classList.remove("zero-fifty");
+					target.classList.remove("hundred-fifty");
+					target.classList.remove("fifty-zero");
+					target.classList.add("fifty-hundred");
+				}
+				
+				function slideUp(buttonId) {
+					var target = document.getElementById(buttonId);
+					target.classList.remove("slide-down");
+					target.classList.add("slide-up");
+				}
+				
+				function slideDown(buttonId) {
+					var target = document.getElementById(buttonId);
+					target.classList.remove("slide-up");
+					target.classList.add("slide-down");
+				}
+				
+				function slideLeft() {
+					var buttonValue = document.getElementById("right-button").innerHTML;
+					if (buttonValue == "Give Feedback") {
+						fiftyZero('main-left-slider');
+						fiftyHundred('main-right-slider');
+						buttonChange('left-button','shrink');
+						fiftyZero('header-left-slider');
+						fiftyHundred('header-right-slider');
+						slideUp('right-button');
+						document.getElementById('main-right-content').style.display = "inline-block";
+					} else {
+						hundredFifty('main-left-slider');
+						zeroFifty('main-right-slider');
+						buttonChange('right-button','grow');
+						hundredFifty('header-left-slider');
+						zeroFifty('header-right-slider');
+						slideDown('left-button');
+						document.getElementById('main-left-content').style.display = "none";
+					}
+				}
+				
+				function slideRight() {
+					var buttonValue = document.getElementById("left-button").innerHTML;
+					if (buttonValue == "Receive Feedback") {
+						fiftyZero('main-right-slider');
+						fiftyHundred('main-left-slider');
+						buttonChange('right-button','shrink');
+						fiftyZero('header-right-slider');
+						fiftyHundred('header-left-slider');
+						slideUp('left-button');
+						document.getElementById('main-left-content').style.display = "inline-block";
+					} else {
+						hundredFifty('main-right-slider');
+						zeroFifty('main-left-slider');
+						buttonChange('left-button','grow');
+						hundredFifty('header-right-slider');
+						zeroFifty('header-left-slider');
+						slideDown('right-button');
+						document.getElementById('main-right-content').style.display = "none";
+					}
+				}
+
+		</script>
+	</head>
+	<body>
+		<div class="header">
+			<div id="header-left-slider" class="header-left">
+				<div class="header-left-top">
+					<div class="header-left-top-text">FEED</div>
+				</div>
+				<div class="header-left-bottom">
+					<div class="header-left-bottom-text">1</div>
+				</div>
+			</div>
+			<div id="header-right-slider" class="header-right">
+				<div class="header-right-top">
+					<div class="header-right-top-text">BACK</div>
+				</div>
+				<div class="header-right-bottom">
+					<div class="header-right-bottom-text">2</div>
+				</div>
+			</div>
+		</div>
+		<div class="main-page">
+			<div class="main-left" id="main-left-slider">
+				<button id="left-button" onclick="slideRight();" type="button" class="btn btn-outline-light">Receive Feedback</button>
+				<div id="main-left-content">
+					alksdjflksajfdlksdkj
+				</div>
+			</div>
+			<div class="main-right" id="main-right-slider">
+				<button id="right-button" onclick="slideLeft();" type="button" class="btn btn-outline-light">Give Feedback</button>
+				<div id="main-right-content">
+					alksdjflksajfdlksdkj
+				</div>
+			</div>
+		</div>
+		
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	</body>
+</html>
