@@ -86,25 +86,25 @@
 .header-left-top {
 	display:flex;
 	height:50%;
-	background-color:darkgreen;
+	background-color:#2c4533;
 }
 
 .header-left-bottom {
 	display:flex;
 	height:50%;
-	background-color:navy;
+	background-color:#234957;
 }
 
 .header-right-top {
 	display:flex;
 	height:50%;
-	background-color:navy;
+	background-color:#234957;
 }
 
 .header-right-bottom {
 	display:flex;
 	height:50%;
-	background-color:darkgreen;
+	background-color:#2c4533;
 }
 
 .header-left-top-text {
@@ -139,7 +139,7 @@
 
 .main-left {
 	display:flex;
-	background-color:darkgreen;
+	background-color:#2c4533;
 	width:50vw;
 	justify-content:center;
 	align-items:center;
@@ -147,7 +147,7 @@
 
 .main-right {
 	display:flex;
-	background-color:navy;
+	background-color:#234957;
 	width:50vw;
 	justify-content:center;
 	align-items:center;
@@ -157,12 +157,14 @@
 	display:none;
 	position:absolute;
 	z-index:1;
+	color:white;
 }
 
 #main-right-content {
 	display:none;
 	position:absolute;
 	z-index:1;
+	color:white;
 }
 
 
