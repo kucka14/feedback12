@@ -46,10 +46,12 @@
 				<button id="right-button" onclick="slideLeft();" type="button" class="btn btn-outline-light">Give Feedback</button>
 				<div id="main-right-content">
 					
+					{% for story in story_list %}
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropRight">
-					  Launch static backdrop modal
+					<button type="button" onclick="storyFill({{ story.id }},{{ story.title }},{{ story.author }},{{ story.text }})" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropRight">
+					  {{ story }}
 					</button>
+					{% endfor %}
 					
 				</div>
 			</div>
@@ -93,10 +95,15 @@
 				</button>
 			  </div>
 			  <div class="modal-body">
+			  
+			  	<div id="storyfillvisible">
+			  	
+			  	</div>
 				
 				<form action="" method="post">
 					{% csrf_token %}
 					{{ read_form }}
+					<input id="storyfillhidden" type="hidden" name="storyid" value="">
 					<input type="submit" value="Submit">
 				</form>
 			

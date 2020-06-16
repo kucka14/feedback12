@@ -121,3 +121,16 @@ function slideRightStay() {
 	slideDown('right-button');
 	document.getElementById('main-right-content').style.display = "none";
 }
+
+function storyFill(id,title,author,text) {
+	
+}
+
+
+
+
+
+
+
+
+
