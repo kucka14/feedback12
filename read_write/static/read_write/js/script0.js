@@ -81,6 +81,16 @@ function slideLeft() {
 	}
 }
 
+function slideLeftStay() {
+	hundredFifty('main-left-slider');
+	zeroFifty('main-right-slider');
+	buttonChange('right-button','grow');
+	hundredFifty('header-left-slider');
+	zeroFifty('header-right-slider');
+	slideDown('left-button');
+	document.getElementById('main-left-content').style.display = "none";
+}
+
 function slideRight() {
 	var buttonValue = document.getElementById("left-button").innerHTML;
 	if (buttonValue == "Receive Feedback") {
@@ -100,4 +110,14 @@ function slideRight() {
 		slideDown('right-button');
 		document.getElementById('main-right-content').style.display = "none";
 	}
+}
+
+function slideRightStay() {
+	hundredFifty('main-right-slider');
+	zeroFifty('main-left-slider');
+	buttonChange('left-button','grow');
+	hundredFifty('header-right-slider');
+	zeroFifty('header-left-slider');
+	slideDown('right-button');
+	document.getElementById('main-right-content').style.display = "none";
 }
