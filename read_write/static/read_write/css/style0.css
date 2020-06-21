@@ -20,6 +20,16 @@
 	animation-fill-mode:forwards;
 }
 
+@keyframes fifty-zero-fast {
+	to {width:100px;}
+}
+
+.fifty-zero-fast {
+	animation-name:fifty-zero-fast;
+	animation-duration:0s;
+	animation-fill-mode:forwards;
+}
+
 @keyframes fifty-hundred {
 	from {width:50vw;}
 	to {width:calc(100vw - 100px);}
@@ -28,6 +38,16 @@
 .fifty-hundred {
 	animation-name:fifty-hundred;
 	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes fifty-hundred-fast {
+	to {width:calc(100vw - 100px);}
+}
+
+.fifty-hundred-fast {
+	animation-name:fifty-hundred-fast;
+	animation-duration:0s;
 	animation-fill-mode:forwards;
 }
 
@@ -43,7 +63,7 @@
 }
 
 @keyframes slide-up {
-	from {margin-bottom:0px;}
+	from {margin-bottom:30px;}
 	50% {margin-bottom:140vh;}
 	to {margin-bottom:calc(100vh - 50px);}
 }
@@ -54,15 +74,103 @@
 	animation-fill-mode:forwards;
 }
 
+@keyframes slide-up-fast {
+	to {margin-bottom:calc(100vh - 50px);}
+}
+
+.slide-up-fast {
+	animation-name:slide-up-fast;
+	animation-duration:0s;
+	animation-fill-mode:forwards;
+}
+
 @keyframes slide-down {
 	from {margin-bottom:calc(100vh - 50px);}
 	50% {margin-bottom:140vh;}
-	to {margin-bottom:0px;}
+	to {margin-bottom:30px;}
 }
 
 .slide-down {
 	animation-name:slide-down;
-	animation-duration: 1s;
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes fade-out {
+	from {opacity:1;}
+	to {opacity:0;}
+}
+
+.fade-out {
+	animation-name:fade-out;
+	animation-duration:2s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes fade-in {
+	from {opacity:0;}
+	to {opacity:1;}
+}
+
+.fade-in {
+	animation-name:fade-in;
+	animation-duration:2s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes store-story {
+	from {left:calc(25% - 100px);
+		  transform:scale(0);
+	}
+	
+	25% {left:calc(25% - 100px);
+		 transform:scale(1);
+	}
+	
+	50% {transform:scale(2);}
+
+	75% {left:calc(75% - 100px);
+		 transform:scale(1);
+	}
+	
+	to {left:calc(75% - 100px);
+		transform:scale(0);
+	}
+}
+
+.store-story {
+	animation-name:store-story;
+	animation-duration:7s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes send-feedback {
+	from {background-color:white;
+		  transform:scale(0);
+	}
+	
+	50% {background-color:grey;
+		 transform:scale(1);
+	}
+	
+	75% {background-color:grey;
+		 transform:scale(0.3);
+	}
+	
+	90% {background-color:grey;
+		 transform:scale(0.3);
+		 margin-bottom:calc(100vh - 100px);
+	}
+	
+	to {background-color:grey;
+		 transform:scale(0.3);
+		 margin-bottom:140vh;
+	}
+}
+
+.send-feedback {
+	animation-name:send-feedback;
+	animation-duration:4s;
 	animation-fill-mode:forwards;
 }
 
@@ -83,28 +191,32 @@
 	flex-direction:column;
 }
 
+/*old color scheme*/
+/*#2c4533*/
+/*#234957*/
+
 .header-left-top {
 	display:flex;
 	height:50%;
-	background-color:#2c4533;
+	background-color:#336699;
 }
 
 .header-left-bottom {
 	display:flex;
 	height:50%;
-	background-color:#234957;
+	background-color:#339966;
 }
 
 .header-right-top {
 	display:flex;
 	height:50%;
-	background-color:#234957;
+	background-color:#339966;
 }
 
 .header-right-bottom {
 	display:flex;
 	height:50%;
-	background-color:#2c4533;
+	background-color:#336699;
 }
 
 .header-left-top-text {
@@ -135,11 +247,12 @@
 	display:flex;
 	flex-direction:row;
 	height:calc(100vh - 100px);
+	position:relative;
 }
 
 .main-left {
 	display:flex;
-	background-color:#2c4533;
+	background-color:#336699;
 	width:50vw;
 	justify-content:center;
 	align-items:center;
@@ -147,7 +260,7 @@
 
 .main-right {
 	display:flex;
-	background-color:#234957;
+	background-color:#339966;
 	width:50vw;
 	justify-content:center;
 	align-items:center;
@@ -158,6 +271,7 @@
 	position:absolute;
 	z-index:1;
 	color:white;
+	margin-bottom:30px;
 }
 
 #main-right-content {
@@ -165,11 +279,185 @@
 	position:absolute;
 	z-index:1;
 	color:white;
+	margin-bottom:30px:
 }
 
+.read-title {
+	font-size:24px;
+	font-weight:bold;
+}
 
+.read-author {
+	font-size:16px;
+}
 
+.feedback-title {
+	font-size:24px;
+}
 
+.write-title {
+	font-size:24px;
+}
+
+.hidden {
+	display:none;
+}
+
+.mfooter {
+	display:flex;
+	justify-content:center;
+}
+
+.field-wrapper {
+	margin-top:15px;
+	font-weight:bold;
+}
+
+.general-error {
+	color:red;
+}
+
+.storycontainer {
+	width:calc(100vw - 200px);
+	height:calc(100vh - 200px);
+	overflow-y:auto;
+	display:flex;
+	justify-content:center;
+	flex-wrap:wrap;
+}
+
+.storybox {
+	margin:5px;
+	width:18rem;
+}
+
+.ctitle {
+	color:black;
+}
+
+.ctext {
+	color:black;
+}
+
+.tempboxleft {
+	position:absolute;
+	z-index:3;
+	width:200px;
+}
+
+.tempboxright {
+	position:absolute;
+	z-index:3;
+	width:200px;
+}
+
+.stories-title {
+	text-align:center;
+	font-size:24px;
+}
+
+.bluebtn {
+	background-color:#336699;
+	border-color:white;
+	color:white;
+}
+
+.bluebtn:hover {
+	background-color:#ccff00;
+	border-color:black;
+	color:black;
+}
+
+.bluebtn:active {
+	background-color:#ccff00;
+	border-color:black;
+	color:black;
+}
+
+.bluebtn:focus {
+	background-color:#336699;
+	border-color:white;
+	color:white;
+}
+
+.greenbtn {
+	background-color:#339966;
+	border-color:white;
+	color:white;
+}
+
+.greenbtn:hover {
+	background-color:#ccff00;
+	border-color:black;
+	color:black;
+}
+
+.greenbtn:active {
+	background-color:#ccff00;
+	border-color:black;
+	color:black;
+}
+
+.greenbtn:focus {
+	background-color:#339966;
+	border-color:white;
+	color:white;
+}
+
+.main-title-outer {
+	position:absolute;
+	width:100vw;
+	top:20px;
+	z-index:2;
+	display:flex;
+	align-items:flex-start;
+}
+
+/*.main-title-middlewrap {*/
+/*	display:flex;*/
+/*	align-items:flex-start;*/
+/*}*/
+
+.main-title-inner {
+	display:flex;
+/*	width:95vw;*/
+/*	max-width:490px;*/
+	flex-direction:column;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:rgba(0,50,50,.25);
+	padding:10px;
+	padding-top:5px;
+	border-style:solid;
+	border-color:white;
+	position:relative;
+}
+
+.main-title-top {
+	color:white;
+	margin-left:auto;
+	margin-right:auto;
+	font-size:20px;
+}
+
+.main-title-bottom {
+	color:white;
+	margin-left:auto;
+	margin-right:auto;
+	font-size:14px;
+}
+
+@media screen and (max-width:515px) {
+	.main-title-inner {
+		padding:1.6vw;
+	}
+	.main-title-top {
+		font-size:3.7vw;
+	}
+	.main-title-bottom {
+		font-size:2.8vw;
+	}
+}
 
 
 

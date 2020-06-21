@@ -31,30 +31,105 @@
 			</div>
 		</div>
 		<div class="main-page">
+		
+			<div id="main-banner" style="opacity:1" class="main-title-outer">
+<!--			<div class="main-title-middlewrap">-->
+			<div class="main-title-inner">
+				<button type="button" class="close" onclick="fadeOut('main-banner');">
+<!--					<div style="position:absolute;left:3px;top:-1px;color:white;">x</div>-->
+					<div style="position:absolute;right:3px;bottom:3px;color:white;font-size:12px;">x</div>
+				</button>
+				
+				{% if message != '' %}
+				
+					<div class="main-title-top">{{ message.top }}</div>
+					<div class="main-title-bottom">
+					{{ message.middle }}
+					</div>
+					<br>
+					<div class="main-title-bottom">
+					{{ message.bottom }}
+					</div>
+					
+				{% else %}
+				
+					<div class="main-title-top">Submit a story for feedback, or find a story to read.</div>
+					<div class="main-title-bottom">
+					Get feedback on your story in 12 hours or less.
+					</div>
+					<br>
+					<div class="main-title-bottom">
+					Comments will be emailed to you. No need to create an account.
+					</div>
+					
+				{% endif %}
+				
+			</div>
+<!--			</div>-->
+			</div>
+			
 			<div class="main-left" id="main-left-slider">
-				<button id="left-button" onclick="slideRight();" type="button" class="btn btn-outline-light">Receive Feedback</button>
+					
+					<div id="tempboxleft" class="card tempboxleft hidden">
+							  <div class="card-body">
+								<h5 class="card-title ctitle">{{ now_story.title }}</h5>
+								<h6 class="card-subtitle mb-2 text-muted">{{ now_story.author }}</h6>
+								<p class="card-text ctext">{{ now_story.description }}</p>
+								<button class="btn bluebtn">
+									Read This Story
+								</button>
+							  </div>
+					</div>
+					
+				<button id="left-button" style="margin-bottom:30px;" onclick="slideRight();" type="button" class="btn btn-outline-light">Receive Feedback</button>
+				
 				<div id="main-left-content">
 				
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropLeft">
-					  Launch static backdrop modal
+					<button id="left-modal-trigger" type="button" class="btn greenbtn" data-toggle="modal" data-target="#staticBackdropLeft">
+					  Submit Your Story
 					</button>
 					
 				</div>
 			</div>
 			<div class="main-right" id="main-right-slider">
+			
+				<div id="tempboxright" class="card tempboxright hidden">
+							  <div class="card-body">
+								<h5 class="card-title ctitle">{{ now_story.title }}</h5>
+								<h6 class="card-subtitle mb-2" style="color:white">Grade: {{ now_story.grade }}</h6>
+								<p class="card-text ctext">{{ now_story.comments }}</p>
+							  </div>
+					</div>
+			
 				<button id="right-button" onclick="slideLeft();" type="button" class="btn btn-outline-light">Give Feedback</button>
 				<div id="main-right-content">
-					
+					<div class="stories-title">
+						Stories
+					</div>
+					<div class="storycontainer">
 					{% for story in story_list %}
 					<!-- Button trigger modal -->
-					<button type="button" onclick="storyFill({{ story.id }},{{ story.title }},{{ story.author }},{{ story.text }})" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropRight">
-					  {{ story }}
-					</button>
+					{% if story.graded == False %}
+					<div class="card storybox">
+					  <div class="card-body">
+						<h5 class="card-title ctitle">{{ story.title }}</h5>
+						<h6 class="card-subtitle mb-2 text-muted">{{ story.author }}</h6>
+						<p class="card-text ctext">{{ story.description }}</p>
+						<button id="right-modal-trigger" type="button" onclick="storyFill({{story.id}},'{{story.title}}','{{story.author}}','{{story.text}}')" class="btn bluebtn" data-toggle="modal" data-target="#staticBackdropRight">
+							Read This Story
+						</button>
+					  </div>
+					</div>
+					{% else %}
+					{% endif %}
+					
 					{% endfor %}
+					</div>
 					
 				</div>
 			</div>
+		
 		</div>
 		
 		<!-- Modal Left -->
@@ -62,23 +137,53 @@
 		  <div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 			  <div class="modal-header">
-				<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+				<div class="modal-title">
+					<div class="write-title">Submit Your Story</div>
+				</div>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
 				</button>
 			  </div>
 			  <div class="modal-body">
+			  
+			  	{% if start_shift == 'popleft' %}
+			  		<div class="general-error">Something went wrong. Review and then resubmit.</div>
+			  	{% endif %}
 				
 				<form action="" method="post">
 					{% csrf_token %}
-					{{ write_form }}
-					<input type="submit" value="Submit">
+					{{ write_form.non_field_errors }}
+					<div class="field-wrapper" style="margin-top:0px">
+						{{ write_form.title.errors }}
+						Title: {{ write_form.title }}
+					</div>
+					<div class="field-wrapper">
+						{{ write_form.author.errors }}
+						Author: {{ write_form.author }}
+					</div>
+					<div class="field-wrapper">
+						Text &nbsp<font color="lightgray">|</font>&nbsp Paste your text below (750 words or less)
+						<br>
+						<div class="general-error">{{ write_form.text.errors.as_text }}</div>
+						{{ write_form.text }}
+					</div>
+					<div class="field-wrapper">
+						{{ write_form.description.errors }}
+						<div style="display:flex;flex-direction:columns">
+						<div>Description:&nbsp<br><span style="font-size:12px;">&nbsp&nbsp&lt; 100 words</span></div><div>{{ write_form.description }}</div>
+						</div>
+					</div>
+					<div class="field-wrapper">
+						{{ write_form.email.errors }}
+						Email: {{ write_form.email }}
+					</div>
+					<input class="hidden" id="hiddensubmitleft" type="submit" name="write_submit">
 				</form>
 				
 			  </div>
-			  <div class="modal-footer">
+			  <div class="modal-footer mfooter">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Understood</button>
+				<button type="button" class="btn bluebtn" onclick="clickOther('hiddensubmitleft')">Submit</button>
 			  </div>
 			</div>
 		  </div>
@@ -89,29 +194,53 @@
 		  <div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 			  <div class="modal-header">
-				<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+			  	<div class="modal-title">
+					<div class="read-title" id="storyfillvisible1"></div>
+					<div class="read-author" id="storyfillvisible2"></div>
+				</div>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
 				</button>
 			  </div>
 			  <div class="modal-body">
 			  
-			  	<div id="storyfillvisible">
-			  	
+			  	{% if start_shift == 'popright' %}
+			  		<div class="general-error">Something went wrong. Review and then resubmit.</div>
+			  	{% endif %}
+			  
+			  	<div id="storyfillvisible3"></div>
+			  	<div style="height:20px"></div>
+			  	<hr style="border-top:dashed 10px;margin:0px;margin-left:-5px;margin-right:-5px;background-color:#336699;">
+			  	<div style="height:10px"></div>
+			  	<div class="feedback-title">
+			  		Submit Your Feedback
 			  	</div>
+			  	<hr>
 				
 				<form action="" method="post">
 					{% csrf_token %}
-					{{ read_form }}
-					<input id="storyfillhidden" type="hidden" name="storyid" value="">
-					<input type="submit" value="Submit">
+					<div class="field-wrapper">
+						{{ read_form.title.errors }}
+						Grade: <span id='gradevalue'></span> &nbsp<font color="lightgray">|</font>&nbsp Rank this story from 1 (bad) to 10 (good).<br>
+						<div style="height:8px;"></div>
+						{{ read_form.grade }}
+					</div>
+					<div class="field-wrapper">
+						{{ read_form.author.errors }}
+						<div style="display:flex;flex-direction:columns">
+						<div>Comments:&nbsp<br><span style="font-size:12px;">&nbsp&nbsp&nbsp&lt; 100 words</span></div><div>{{ read_form.comments }}</div>
+						</div>
+					</div>
+					{{ read_form.storyid }}
+					<input class="hidden" id="hiddensubmitright" type="submit" name="read_submit">
 				</form>
 			
 			  </div>
-			  <div class="modal-footer">
+			  <div class="modal-footer mfooter">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Understood</button>
+				<button type="button" class="btn bluebtn" onclick="clickOther('hiddensubmitright')">Submit</button>
 			  </div>
+			  	
 			</div>
 		  </div>
 		</div>
@@ -119,11 +248,21 @@
 	<script src="/static/read_write/js/script0.js"></script>
 	
 	<script>
-	{% if start_shift == 'left' %}
-		slideLeftStay()
-	{% elif start_shift == 'right' %}
-		slideRightStay()
+	{% if start_shift == 'leftmiddle' %}
+		leftMiddle()
+		showTempBoxLeft()
+	{% elif start_shift == 'stayright' %}
+		stayRight()
+		showTempBoxRight()
+	{% elif start_shift == 'popleft' %}
+		popLeft()
+	{% elif start_shift == 'popright' %}
+		popRight()
 	{% endif %}
+	</script>
+	
+	<script>
+		gradeDisplay();
 	</script>
 		
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

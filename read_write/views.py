@@ -9,43 +9,78 @@ from read_write.models import Story
 def index(request):
 
 	story_list = Story.objects.all()
+	write_form = WriteForm()
+	read_form = ReadForm()
 
 	if request.method == 'POST':
-		write_form = WriteForm(request.POST)
-		read_form = ReadForm(request.POST)
-		if write_form.is_valid():
-			title = write_form.cleaned_data['title']
-			author = write_form.cleaned_data['author']
-			text = write_form.cleaned_data['text']
-			s = Story(title=title,author=author,text=text,graded=True)
-			s.save()
-			read_form = ReadForm()
-			request.session['start_shift'] = 'left'
-			
-		elif read_form.is_valid():
-			grade = read_form.cleaned_data['grade']
-			comments = read_form.cleaned_data['comments']
-			
-			write_form = WriteForm()
-			request.session['start_shift'] = 'right'
+		if 'write_submit' in request.POST:
+			write_form = WriteForm(request.POST)
+			if write_form.is_valid():
+				title = write_form.cleaned_data['title']
+				author = write_form.cleaned_data['author']
+				text = write_form.cleaned_data['text']
+				description = write_form.cleaned_data['description']
+				email = write_form.cleaned_data['email']
+				s = Story(title=title,author=author,text=text,description=description,email=email)
+				s.save()
+				request.session['start_shift'] = 'leftmiddle'
+				request.session['message'] = {'top':'Success!','middle':'Feedback will be emailed to you in 12 hours or less.','bottom':'Submit another story, or find one to read.'}
+				request.session['now_story'] = {'title':s.title[0:30],'author':s.author[0:30],'description':s.description}
+				return redirect('/')
+			else:
+				start_shift = 'popleft'
+				message = ''
+				now_story = ''
+				
+		if 'read_submit' in request.POST:
+			read_form = ReadForm(request.POST)
+			if read_form.is_valid():
+				grade = read_form.cleaned_data['grade']
+				comments = read_form.cleaned_data['comments']
+				storyid = read_form.cleaned_data['storyid']
+				
+				s = Story.objects.get(id=storyid)
+				s.grade = grade
+				s.comments = comments
+				s.graded = True
+				s.save()
+				request.session['start_shift'] = 'stayright'
+				request.session['now_story'] = {'title':s.title[0:30],'grade':s.grade,'comments':s.comments}
+				return redirect('/')
+			else:
+				start_shift = 'popright'
+				message = ''
+				now_story = ''
 		
-		return redirect('/')
+		
 			
 	else:
-		write_form = WriteForm()
-		read_form = ReadForm()
 		
 		start_shift = request.session.get('start_shift')
+		message = request.session.get('message',default='')
+		now_story = request.session.get('now_story')
 		
 		try:
 			del request.session['start_shift']
 		except KeyError:
 			pass
-		
+			
+		try:
+			del request.session['message']
+		except KeyError:
+			pass
+			
+		try:
+			del request.session['now_story']
+		except KeyError:
+			pass
+			
 	return render(request, 'read_write/index.html',{
 					'write_form':write_form,
 					'read_form':read_form,
 					'start_shift':start_shift,
 					'story_list':story_list,
+					'message':message,
+					'now_story':now_story,
 				})
 
