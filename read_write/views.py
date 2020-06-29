@@ -13,7 +13,7 @@ def index(request):
 	write_form = WriteForm()
 	read_form = ReadForm()
 	message = {'message1':{'top':'Submit a story for feedback, or find a story to read.','middle':'Get feedback on your story in 12 hours or less.','bottom':'Comments will be emailed to you. No need to create an account.'},
-			   'message2':[['Submit a poem, essay, or short story.','"Write drunk. Edit sober."','-Ernest Hemingway'],['Submit a poem, essay, or short story.','"If you wanted to make sure that Dostoyevsky was a writer, would you really ask him for his membership card?"','-Mikhail Bulgakov']],
+			   'message2':[['Submit a poem, essay, or short story.','"There is no greater agony than bearing an untold story inside you."','-Maya Angelou'],['Submit a poem, essay, or short story.','"If you wanted to make sure that Dostoyevsky was a writer, would you really ask him for his membership card?"','-Mikhail Bulgakov']],
 			   'message3':{'top':'Success!','middle':'Feedback will be emailed to you in 12 hours or less.','bottom':'Submit another story, or find one to read.'},
 			   'message4':{'top':'Success!','middle':'Your feedback will be emailed directly to the author.','bottom':'Find another story to read, or submit your own.'}
 			   }
