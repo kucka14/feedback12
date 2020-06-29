@@ -23,10 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'so6t90i6sc3%xp_o8d&ko4q-fj4d2e*%v&7pzp!ah5#yiewr@f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['feedback12.herokuapp.com',
-				 '127.0.0.1',]
+				 '127.0.0.1',
+				 'www.feedback12.com']
 
 
 # Application definition
@@ -140,6 +141,9 @@ EMAIL_HOST_USER = 'feedback12help'
 EMAIL_HOST_PASSWORD = 'Fazekas14$1234'
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 
 
