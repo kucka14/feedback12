@@ -5,10 +5,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
-		<title>FB-12</title>
+		<title>Feedback12</title>
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<link rel="stylesheet" href="/static/read_write/css/style0.css">
+		
+		<link rel="icon" href="/static/read_write/images/favicon.ico">
 	
 	</head>
 	<body>
@@ -32,40 +34,23 @@
 		</div>
 		<div class="main-page">
 		
+			 <div class="footer-outer">
+			 <div class="footer-inner">
+		  	<a href="/terms_conditions" target="_blank">Terms and Conditions</a> | <a href="/privacy_policy" target="_blank">Privacy Policy</a> | <a href="/cookies_policy" target="_blank">Cookies Policy</a>
+		  	</div>
+		  </div>
+		
 			<div id="main-banner" style="opacity:1" class="main-title-outer">
-<!--			<div class="main-title-middlewrap">-->
-			<div class="main-title-inner">
-				<button type="button" class="close" onclick="fadeOut('main-banner');">
-<!--					<div style="position:absolute;left:3px;top:-1px;color:white;">x</div>-->
-					<div style="position:absolute;right:3px;bottom:3px;color:white;font-size:12px;">x</div>
+			<div id="main-title-inner" class="main-title-inner" style="left:0px;max-width:90vw;">
+				<button id="main-title-button-click" type="button" class="close" onclick="fadeOut('main-banner');">
+					<div id="main-title-button" style="position:absolute;right:3px;bottom:3px;font-size:12px;">x</div>
 				</button>
-				
-				{% if message != '' %}
-				
-					<div class="main-title-top">{{ message.top }}</div>
-					<div class="main-title-bottom">
-					{{ message.middle }}
-					</div>
-					<br>
-					<div class="main-title-bottom">
-					{{ message.bottom }}
-					</div>
 					
-				{% else %}
-				
-					<div class="main-title-top">Submit a story for feedback, or find a story to read.</div>
-					<div class="main-title-bottom">
-					Get feedback on your story in 12 hours or less.
-					</div>
-					<br>
-					<div class="main-title-bottom">
-					Comments will be emailed to you. No need to create an account.
-					</div>
-					
-				{% endif %}
+					<div id="main-title-top" class="main-title-top">Loading...</div>
+					<div id="main-title-middle" class="main-title-bottom">---</div>
+					<div id="main-title-bottom" class="main-title-bottom">---</div>
 				
 			</div>
-<!--			</div>-->
 			</div>
 			
 			<div class="main-left" id="main-left-slider">
@@ -73,7 +58,7 @@
 					<div id="tempboxleft" class="card tempboxleft hidden">
 							  <div class="card-body">
 								<h5 class="card-title ctitle">{{ now_story.title }}</h5>
-								<h6 class="card-subtitle mb-2 text-muted">{{ now_story.author }}</h6>
+								<h6 class="card-subtitle mb-2">{{ now_story.author }}</h6>
 								<p class="card-text ctext">{{ now_story.description }}</p>
 								<button class="btn bluebtn">
 									Read This Story
@@ -81,7 +66,7 @@
 							  </div>
 					</div>
 					
-				<button id="left-button" style="margin-bottom:30px;" onclick="slideRight();" type="button" class="btn btn-outline-light">Receive Feedback</button>
+				<button id="left-button" onclick="slideRight({{message.message2}},'{{message.message1.top}}','{{message.message1.middle}}','{{message.message1.bottom}}');" type="button" class="btn btn-outline-light">Receive Feedback</button>
 				
 				<div id="main-left-content">
 				
@@ -102,33 +87,37 @@
 							  </div>
 					</div>
 			
-				<button id="right-button" onclick="slideLeft();" type="button" class="btn btn-outline-light">Give Feedback</button>
+				<button id="right-button" onclick="slideLeft('{{message.message1.top}}','{{message.message1.middle}}','{{message.message1.bottom}}');flipCardColor();" type="button" class="btn btn-outline-light">Give Feedback</button>
 				<div id="main-right-content">
-					<div class="stories-title">
+					<div id="stories-title">
 						Stories
 					</div>
 					<div class="storycontainer">
+					{% if story_list|length == 0 %}
+						<div id="cardlitmus" style="color:#FFFFFF;">
+							There are no ungraded stories at this time. Come back later, or submit a story of your own for feedback.
+						</div>
+					{% else %}
 					{% for story in story_list %}
 					<!-- Button trigger modal -->
-					{% if story.graded == False %}
 					<div class="card storybox">
-					  <div class="card-body">
-						<h5 class="card-title ctitle">{{ story.title }}</h5>
-						<h6 class="card-subtitle mb-2 text-muted">{{ story.author }}</h6>
-						<p class="card-text ctext">{{ story.description }}</p>
+					  <div class="card-body stbground" style="background-color:#336699;">
+						<h5 id="cardlitmus" style="color:white;" class="card-title ctitle sttext">{{ story.title }}</h5>
+						<h6 style="color:white;" class="card-subtitle mb-2 sttext">{{ story.author }}</h6>
+						<p style="color:white;" class="card-text ctext sttext">{{ story.description }}</p>
 						<button id="right-modal-trigger" type="button" onclick="storyFill({{story.id}},'{{story.title}}','{{story.author}}','{{story.text}}')" class="btn bluebtn" data-toggle="modal" data-target="#staticBackdropRight">
 							Read This Story
 						</button>
 					  </div>
 					</div>
-					{% else %}
-					{% endif %}
 					
 					{% endfor %}
+					{% endif %}
 					</div>
 					
 				</div>
 			</div>
+			
 		
 		</div>
 		
@@ -139,6 +128,9 @@
 			  <div class="modal-header">
 				<div class="modal-title">
 					<div class="write-title">Submit Your Story</div>
+					{% if start_shift == 'popleft' %}
+			  			<div class="general-error">Something went wrong. Review and then resubmit.</div>
+			  		{% endif %}
 				</div>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
@@ -146,36 +138,36 @@
 			  </div>
 			  <div class="modal-body">
 			  
-			  	{% if start_shift == 'popleft' %}
-			  		<div class="general-error">Something went wrong. Review and then resubmit.</div>
-			  	{% endif %}
+			  	
 				
 				<form action="" method="post">
 					{% csrf_token %}
-					{{ write_form.non_field_errors }}
+					<div class="general-error">{{ write_form.non_field_errors.as_text }}</div>
 					<div class="field-wrapper" style="margin-top:0px">
-						{{ write_form.title.errors }}
+						<div class="general-error">{{ write_form.title.errors.as_text }}</div>
 						Title: {{ write_form.title }}
 					</div>
 					<div class="field-wrapper">
-						{{ write_form.author.errors }}
+						<div class="general-error">{{ write_form.author.errors.as_text }}</div>
 						Author: {{ write_form.author }}
 					</div>
 					<div class="field-wrapper">
-						Text &nbsp<font color="lightgray">|</font>&nbsp Paste your text below (750 words or less)
+						Text &nbsp<font color="lightgray">|</font>&nbsp Type or paste your story below (750 words or less)
 						<br>
+						<div style="font-size:12px">(We use the term story loosely. Fiction, nonfiction, and poetry are all encouraged.)</div>
 						<div class="general-error">{{ write_form.text.errors.as_text }}</div>
 						{{ write_form.text }}
 					</div>
 					<div class="field-wrapper">
-						{{ write_form.description.errors }}
+						<div class="general-error">{{ write_form.description.errors.as_text }}</div>
 						<div style="display:flex;flex-direction:columns">
-						<div>Description:&nbsp<br><span style="font-size:12px;">&nbsp&nbsp&lt; 100 words</span></div><div>{{ write_form.description }}</div>
+						<div style="width:110px">Description:<br><span style="font-size:12px;">(Your story in a sentence or two. Must be less than 100 characters.)</span></div><div style="width:7px;"></div><div>{{ write_form.description }}</div>
 						</div>
 					</div>
 					<div class="field-wrapper">
-						{{ write_form.email.errors }}
+						<div class="general-error">{{ write_form.email.errors.as_text }}</div>
 						Email: {{ write_form.email }}
+						<div style="font-size:12px;margin-top:3px;">(No one else will ever see your email address. We store your email so that feedback can be sent to you automatically. Emails are not used for any other purpose.)</div>
 					</div>
 					<input class="hidden" id="hiddensubmitleft" type="submit" name="write_submit">
 				</form>
@@ -197,6 +189,9 @@
 			  	<div class="modal-title">
 					<div class="read-title" id="storyfillvisible1"></div>
 					<div class="read-author" id="storyfillvisible2"></div>
+					{% if start_shift == 'popright' %}
+			  			<div class="general-error">Something went wrong. Review and then resubmit.</div>
+			  		{% endif %}
 				</div>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
@@ -204,9 +199,7 @@
 			  </div>
 			  <div class="modal-body">
 			  
-			  	{% if start_shift == 'popright' %}
-			  		<div class="general-error">Something went wrong. Review and then resubmit.</div>
-			  	{% endif %}
+			  	
 			  
 			  	<div id="storyfillvisible3"></div>
 			  	<div style="height:20px"></div>
@@ -220,16 +213,17 @@
 				<form action="" method="post">
 					{% csrf_token %}
 					<div class="field-wrapper">
-						{{ read_form.title.errors }}
+						<div class="general-error">{{ read_form.title.errors.as_text }}</div>
 						Grade: <span id='gradevalue'></span> &nbsp<font color="lightgray">|</font>&nbsp Rank this story from 1 (bad) to 10 (good).<br>
 						<div style="height:8px;"></div>
 						{{ read_form.grade }}
 					</div>
 					<div class="field-wrapper">
-						{{ read_form.author.errors }}
+						<div class="general-error">{{ read_form.author.errors.as_text }}</div>
 						<div style="display:flex;flex-direction:columns">
-						<div>Comments:&nbsp<br><span style="font-size:12px;">&nbsp&nbsp&nbsp&lt; 100 words</span></div><div>{{ read_form.comments }}</div>
+						<div style="width:110px;">Comments:<br><span style="font-size:12px;">(Justify and explain the grade you gave, in 250 words or less.)</span></div><div style="width:7px;"></div><div>{{ read_form.comments }}</div>
 						</div>
+						<div style="font-size:12px;margin-top:3px;">(Your comments will only be seen by the author and a single reviewer who monitors for innapropriate content.)</div>
 					</div>
 					{{ read_form.storyid }}
 					<input class="hidden" id="hiddensubmitright" type="submit" name="read_submit">
@@ -249,15 +243,17 @@
 	
 	<script>
 	{% if start_shift == 'leftmiddle' %}
-		leftMiddle()
-		showTempBoxLeft()
+		leftMiddle('{{message.message3.top}}','{{message.message3.middle}}','{{message.message3.bottom}}');
+		showTempBoxLeft();
 	{% elif start_shift == 'stayright' %}
-		stayRight()
-		showTempBoxRight()
+		stayRight('{{message.message4.top}}','{{message.message4.middle}}','{{message.message4.bottom}}');
+		showTempBoxRight();
 	{% elif start_shift == 'popleft' %}
-		popLeft()
+		popLeft();
 	{% elif start_shift == 'popright' %}
-		popRight()
+		popRight();
+	{% else %}
+		flipMessage('{{message.message1.top}}','{{message.message1.middle}}','{{message.message1.bottom}}','0px','rgba(0,50,50,.25)','white','95vw');
 	{% endif %}
 	</script>
 	

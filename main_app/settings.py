@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'so6t90i6sc3%xp_o8d&ko4q-fj4d2e*%v&7pzp!ah5#yiewr@f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['feedback12.herokuapp.com',
 				 '127.0.0.1',]
@@ -133,7 +133,13 @@ STATICFILES_DIR = (
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = 'feedback12help'
+EMAIL_HOST_PASSWORD = 'Fazekas14$1234'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 
 
 

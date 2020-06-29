@@ -1,8 +1,7 @@
-
 function fadeOut(fadeTarget) {
 	var target = document.getElementById(fadeTarget);
-	target.classList.remove("fade-in");
-	target.classList.add("fade-out");
+		target.classList.remove("fade-in");
+		target.classList.add("fade-out");
 }
 
 function fadeIn(fadeTarget) {
@@ -11,6 +10,52 @@ function fadeIn(fadeTarget) {
 	target.classList.add("fade-in");
 }
 
+function pickQuote(qArray) {
+	var quoteBlock = qArray[Math.floor(Math.random() * qArray.length)];
+	return quoteBlock;
+}
+
+function flipMessage(messageTop,messageMiddle,messageBottom,styleShift,styleColor,styleFont,styleWidth) {
+	var targetStyle = document.getElementById('main-title-inner');
+	var targetTop = document.getElementById('main-title-top');
+	var targetMiddle = document.getElementById('main-title-middle');
+	var targetBottom = document.getElementById('main-title-bottom');
+	var targetButton = document.getElementById('main-title-button');
+	targetStyle.style.left = styleShift;
+	targetStyle.style.backgroundColor = styleColor;
+	targetStyle.style.maxWidth = styleWidth;
+	targetTop.style.color = styleFont;
+	targetMiddle.style.color = styleFont;
+	targetBottom.style.color = styleFont;
+	targetStyle.style.borderColor = styleFont;
+	targetButton.style.color = styleFont;
+	targetTop.innerHTML = messageTop;
+	targetMiddle.innerHTML = messageMiddle;
+	targetBottom.innerHTML = messageBottom;
+}
+
+function flipCardColor() {
+	if (document.getElementById('cardlitmus').style.color == 'white') {
+		var all = document.getElementsByClassName('stbground');
+		for (var i = 0; i < all.length; i++) {
+		  all[i].style.backgroundColor = 'white';
+		}
+		var all = document.getElementsByClassName('sttext');
+		for (var i = 0; i < all.length; i++) {
+		  all[i].style.color = 'black';
+		}
+	} else if (document.getElementById('cardlitmus').style.color == 'black'){
+		var all = document.getElementsByClassName('stbground');
+		for (var i = 0; i < all.length; i++) {
+		  all[i].style.backgroundColor = '#336699';
+		}
+		var all = document.getElementsByClassName('sttext');
+		for (var i = 0; i < all.length; i++) {
+		  all[i].style.color = 'white';
+		}
+	} else {
+	}
+}
 
 function buttonChange(buttonId,growDirection) {
 	if (buttonId == "left-button") {
@@ -26,7 +71,7 @@ function buttonChange(buttonId,growDirection) {
 			var buttonValue = "<<";
 		}
 	}
-	document.getElementById(buttonId).innerHTML=buttonValue;
+	document.getElementById(buttonId).innerHTML = buttonValue;
 }
 
 function fiftyZero(slider) {
@@ -101,7 +146,7 @@ function slideDown(buttonId) {
 	target.classList.add("slide-down");
 }
 
-function slideLeft() {
+function slideLeft(mT,mM,mB) {
 	var buttonValue = document.getElementById("right-button").innerHTML;
 	if (buttonValue == "Give Feedback") {
 		fiftyZero('main-left-slider');
@@ -120,12 +165,12 @@ function slideLeft() {
 		zeroFifty('header-right-slider');
 		slideDown('left-button');
 		document.getElementById('main-left-content').style.display = "none";
-		document.getElementById('main-banner').style.opacity = "0";
+		flipMessage(mT,mM,mB,'0px','rgba(0,50,50,.25)','white','95vw');
 		fadeIn('main-banner');
 	}
 }
 
-function leftMiddle() {
+function leftMiddle(mT,mM,mB) {
 	hundredFifty('main-left-slider');
 	zeroFifty('main-right-slider');
 	buttonChange('right-button','grow');
@@ -134,10 +179,11 @@ function leftMiddle() {
 	slideDown('left-button');
 	document.getElementById('main-left-content').style.display = "none";
 	document.getElementById('main-banner').style.opacity = "0";
-	fadeIn('main-banner');
+	flipMessage(mT,mM,mB,'0px','rgba(0,50,50,.25)','white','95vw');
+	setTimeout(function(){fadeIn('main-banner');},1500);
 }
 
-function slideRight() {
+function slideRight(qArray,mTm,mMm,mBm) {
 	var buttonValue = document.getElementById("left-button").innerHTML;
 	if (buttonValue == "Receive Feedback") {
 		fiftyZero('main-right-slider');
@@ -147,7 +193,12 @@ function slideRight() {
 		fiftyHundred('header-left-slider');
 		slideUp('left-button');
 		document.getElementById('main-left-content').style.display = "inline-block";
-		fadeOut('main-banner');
+		var quoteBlock = pickQuote(qArray);
+		var line1 = quoteBlock[0];
+		var line2 = quoteBlock[1];
+		var line3 = quoteBlock[2];
+		flipMessage(line1,line2,line3,'-50px','rgba(0,50,50,.25)','white','calc(95vw - 100px)');
+		fadeIn('main-banner');
 	} else {
 		hundredFifty('main-right-slider');
 		zeroFifty('main-left-slider');
@@ -156,12 +207,12 @@ function slideRight() {
 		zeroFifty('header-left-slider');
 		slideDown('right-button');
 		document.getElementById('main-right-content').style.display = "none";
-		document.getElementById('main-banner').style.opacity = "0";
+		flipMessage(mTm,mMm,mBm,'0px','rgba(0,50,50,.25)','white','95vw');
 		fadeIn('main-banner');
 	}
 }
 
-function stayRight() {
+function stayRight(mT,mM,mB) {
 		fiftyZeroFast('main-left-slider');
 		fiftyHundredFast('main-right-slider');
 		buttonChange('left-button','shrink');
@@ -170,24 +221,25 @@ function stayRight() {
 		slideUpFast('right-button');
 		document.getElementById('main-right-content').style.display = "inline-block";
 		document.getElementById('main-banner').style.opacity = "0";
+		flipMessage(mT,mM,mB,'50px','rgba(204,255,0,1)','black','calc(95vw - 100px)');
+		setTimeout(function(){fadeIn('main-banner');},2000);
+		setTimeout(function(){fadeOut('main-banner');},10000);
 }
 
 function popLeft() {
-	slideRight();
-	setTimeout(move,500);
+	slideRight('Error Submitting!','There was an error submitting your story.','You can still open the form and correct the error.','X','X','X');
+	setTimeout(move,100);
 	function move() {
 		document.getElementById("left-modal-trigger").click();
 	}
-	document.getElementById('main-banner').style.opacity = "0";
 }
 
 function popRight() {
-	slideLeft();
-	setTimeout(move,500);
+	slideLeft('Error Submitting!','There was an error submitting your feedback.','You can still open the form and correct the error.');
+	setTimeout(move,100);
 	function move() {
 		document.getElementById("right-modal-trigger").click();
 	}
-	document.getElementById('main-banner').style.opacity = "0";
 }
 
 function storyFill(id,title,author,text) {

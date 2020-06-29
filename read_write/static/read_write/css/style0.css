@@ -103,7 +103,7 @@
 
 .fade-out {
 	animation-name:fade-out;
-	animation-duration:2s;
+	animation-duration:1s;
 	animation-fill-mode:forwards;
 }
 
@@ -114,7 +114,7 @@
 
 .fade-in {
 	animation-name:fade-in;
-	animation-duration:2s;
+	animation-duration:1s;
 	animation-fill-mode:forwards;
 }
 
@@ -271,7 +271,6 @@
 	position:absolute;
 	z-index:1;
 	color:white;
-	margin-bottom:30px;
 }
 
 #main-right-content {
@@ -279,7 +278,6 @@
 	position:absolute;
 	z-index:1;
 	color:white;
-	margin-bottom:30px:
 }
 
 .read-title {
@@ -324,6 +322,7 @@
 	display:flex;
 	justify-content:center;
 	flex-wrap:wrap;
+	align-items:flex-start;
 }
 
 .storybox {
@@ -341,19 +340,22 @@
 
 .tempboxleft {
 	position:absolute;
+	margin-bottom:30px;
 	z-index:3;
 	width:200px;
 }
 
 .tempboxright {
 	position:absolute;
+	margin-bottom:30px;
 	z-index:3;
 	width:200px;
 }
 
-.stories-title {
+#stories-title {
 	text-align:center;
 	font-size:24px;
+	color:white;
 }
 
 .bluebtn {
@@ -413,11 +415,6 @@
 	align-items:flex-start;
 }
 
-/*.main-title-middlewrap {*/
-/*	display:flex;*/
-/*	align-items:flex-start;*/
-/*}*/
-
 .main-title-inner {
 	display:flex;
 /*	width:95vw;*/
@@ -430,7 +427,7 @@
 	padding-top:5px;
 	border-style:solid;
 	border-color:white;
-	position:relative;
+	position: relative;
 }
 
 .main-title-top {
@@ -452,20 +449,84 @@
 		padding:1.6vw;
 	}
 	.main-title-top {
-		font-size:3.7vw;
+		font-size:3.2vw;
 	}
 	.main-title-bottom {
 		font-size:2.8vw;
 	}
 }
 
+.text-area {
+	width:100%;
+}
 
+#right-button {
+	margin-bottom:30px;
+}
 
+#left-button {
+	margin-bottom:30px;
+}
 
+@media screen and (max-width:350px) {
+	#right-button {
+		padding:1.6vw;
+		font-size:3.7vw;
+	}
+	#left-button {
+		padding:1.6vw;
+		font-size:3.7vw;
+	}
+}
 
+#left-modal-trigger {
+	margin-bottom:30px;
+}
 
+.scrunch {
+	width:90vw;
+	margin-left:auto;
+	margin-right:auto;
+}
 
+.policy {
+	background-color:#336699;
+	color:white;
+}
 
+.policy a {
+	color:#ccff00;
+}
+
+.footer-outer {
+	position:absolute;
+	bottom:7px;
+	width:100vw;
+	z-index:2;
+	display:flex;
+	align-items:flex-start;
+}
+
+.footer-inner {
+	margin-left:auto;
+	margin-right:auto;
+	color:lightgray;
+	font-size:10px;
+}
+
+.footer-inner a {
+	color:lightgray;
+}
+
+.footer-inner a:hover {
+	color:#ccff00;
+}
+
+@media screen and (max-width:350px) {
+	.footer-inner {
+		font-size:2.8vw;
+	}
+}
 
 
 
