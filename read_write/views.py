@@ -100,9 +100,11 @@ def privacy_policy(request):
 def cookies_policy(request):
 	return render(request,'read_write/cookies_policy.html')
 
+def robots(request):
+	return render(request, 'read_write/robots.txt')
 
-
-
+def sitemap(request):
+	return render(request, 'read_write/sitemap.xml')	
 
 
 
