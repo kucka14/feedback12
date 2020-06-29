@@ -105,7 +105,7 @@
 						<h5 id="cardlitmus" style="color:white;" class="card-title ctitle sttext">{{ story.title }}</h5>
 						<h6 style="color:white;" class="card-subtitle mb-2 sttext">{{ story.author }}</h6>
 						<p style="color:white;" class="card-text ctext sttext">{{ story.description }}</p>
-						<button id="right-modal-trigger" type="button" onclick="storyFill({{story.id}},'{{story.title}}','{{story.author}}','{{story.text}}')" class="btn bluebtn" data-toggle="modal" data-target="#staticBackdropRight">
+						<button id="right-modal-trigger" type="button" onclick="storyFill({{story.id}},`{{story.title}}`,`{{story.author}}`,`{{story.text}}`)" class="btn bluebtn" data-toggle="modal" data-target="#staticBackdropRight">
 							Read This Story
 						</button>
 					  </div>
@@ -201,7 +201,7 @@
 			  
 			  	
 			  
-			  	<div id="storyfillvisible3"></div>
+			  	<div id="storyfillvisible3" style="white-space:pre-line"></div>
 			  	<div style="height:20px"></div>
 			  	<hr style="border-top:dashed 10px;margin:0px;margin-left:-5px;margin-right:-5px;background-color:#336699;">
 			  	<div style="height:10px"></div>

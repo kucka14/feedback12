@@ -1,3 +1,4 @@
+
 function fadeOut(fadeTarget) {
 	var target = document.getElementById(fadeTarget);
 		target.classList.remove("fade-in");
