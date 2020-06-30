@@ -52,7 +52,7 @@ def index(request):
 				try:
 					emailtuple = (
 						('Story Graded','The story %s was just graded.' % (s.title),'feedback12help@gmail.com',['feedback12help@gmail.com']),
-						('Story Feedback (FB-12)',"Feedback from an anonymous user is shown below. If the feedback is inappropriate in any way, please reply to this email with your complaint.\n\nGrade: %s/10\n\nComments:\n\t%s\n\nHappy? Upset? Confused? Now it's your turn to give us feedback. Feel free to reply to this email with any thoughts or comments about our service. (These comments will go to Feeback12 - not to the user who graded your story.)" % (grade,comments),'feedback12help@gmail.com',[s.email])
+						('Story Feedback (FB-12)',"Feedback from an anonymous user is shown below. If the feedback is inappropriate in any way, please reply to this email with your complaint.\n\nStory Title: %s\n\nGrade: %s/10\n\nComments:\n\t%s\n\nHappy? Upset? Confused? Now it's your turn to give us feedback. Feel free to reply to this email with any thoughts or comments about our service. (These comments will go to Feeback12 - not to the user who graded your story.)" % (s.title,grade,comments),'feedback12help@gmail.com',[s.email])
 					)
 					send_mass_mail(emailtuple,fail_silently=True)
 					s.feedback_sent = True
