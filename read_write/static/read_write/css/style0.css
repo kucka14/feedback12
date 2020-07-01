@@ -96,6 +96,50 @@
 	animation-fill-mode:forwards;
 }
 
+@keyframes click-slide-ml {
+	from {left:calc(50vw - 50px);}
+	to {left:50px;}
+}
+
+.click-slide-ml {
+	animation-name:click-slide-ml;
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes click-slide-lm {
+	from {left:50px;}
+	to {left:calc(50vw - 50px);}
+}
+
+.click-slide-lm {
+	animation-name:click-slide-lm;
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes click-slide-mr {
+	from {left:calc(50vw - 50px);}
+	to {left:calc(100vw - 150px);}
+}
+
+.click-slide-mr {
+	animation-name:click-slide-mr;
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes click-slide-rm {
+	from {left:calc(100vw - 150px);}
+	to {left:calc(50vw - 50px);}
+}
+
+.click-slide-rm {
+	animation-name:click-slide-rm;
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
 @keyframes fade-out {
 	from {opacity:1;}
 	to {opacity:0;}
@@ -177,6 +221,15 @@
 .header {
 	display:flex;
 	height:100px;
+	position:relative;
+}
+
+#header-click {
+	position:absolute;
+	left:calc(50vw - 50px);
+	top:25px;
+	height:50px;
+	width:100px;
 }
 
 .header-left {

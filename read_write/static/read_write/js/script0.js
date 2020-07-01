@@ -147,6 +147,38 @@ function slideDown(buttonId) {
 	target.classList.add("slide-down");
 }
 
+function clickSlideML() {
+	var target = document.getElementById("header-click");
+	target.classList.remove("click-slide-lm");
+	target.classList.remove("click-slide-mr");
+	target.classList.remove("click-slide-rm");
+	target.classList.add("click-slide-ml");
+}
+
+function clickSlideLM() {
+	var target = document.getElementById("header-click");
+	target.classList.remove("click-slide-ml");
+	target.classList.remove("click-slide-mr");
+	target.classList.remove("click-slide-rm");
+	target.classList.add("click-slide-lm");
+}
+
+function clickSlideMR() {
+	var target = document.getElementById("header-click");
+	target.classList.remove("click-slide-lm");
+	target.classList.remove("click-slide-ml");
+	target.classList.remove("click-slide-rm");
+	target.classList.add("click-slide-mr");
+}
+
+function clickSlideRM() {
+	var target = document.getElementById("header-click");
+	target.classList.remove("click-slide-lm");
+	target.classList.remove("click-slide-ml");
+	target.classList.remove("click-slide-mr");
+	target.classList.add("click-slide-rm");
+}
+
 function slideLeft(mT,mM,mB) {
 	var buttonValue = document.getElementById("right-button").innerHTML;
 	if (buttonValue == "Give Feedback") {
@@ -156,6 +188,7 @@ function slideLeft(mT,mM,mB) {
 		fiftyZero('header-left-slider');
 		fiftyHundred('header-right-slider');
 		slideUp('right-button');
+		clickSlideML()
 		document.getElementById('main-right-content').style.display = "inline-block";
 		fadeOut('main-banner');
 	} else {
@@ -165,6 +198,7 @@ function slideLeft(mT,mM,mB) {
 		hundredFifty('header-left-slider');
 		zeroFifty('header-right-slider');
 		slideDown('left-button');
+		clickSlideRM()
 		document.getElementById('main-left-content').style.display = "none";
 		flipMessage(mT,mM,mB,'0px','rgba(0,50,50,.25)','white','95vw');
 		fadeIn('main-banner');
@@ -178,6 +212,7 @@ function leftMiddle(mT,mM,mB) {
 	hundredFifty('header-left-slider');
 	zeroFifty('header-right-slider');
 	slideDown('left-button');
+	clickSlideRM()
 	document.getElementById('main-left-content').style.display = "none";
 	document.getElementById('main-banner').style.opacity = "0";
 	flipMessage(mT,mM,mB,'0px','rgba(0,50,50,.25)','white','95vw');
@@ -193,6 +228,7 @@ function slideRight(qArray,mTm,mMm,mBm) {
 		fiftyZero('header-right-slider');
 		fiftyHundred('header-left-slider');
 		slideUp('left-button');
+		clickSlideMR()
 		document.getElementById('main-left-content').style.display = "inline-block";
 		var quoteBlock = pickQuote(qArray);
 		var line1 = quoteBlock[0];
@@ -207,6 +243,7 @@ function slideRight(qArray,mTm,mMm,mBm) {
 		hundredFifty('header-right-slider');
 		zeroFifty('header-left-slider');
 		slideDown('right-button');
+		clickSlideLM()
 		document.getElementById('main-right-content').style.display = "none";
 		flipMessage(mTm,mMm,mBm,'0px','rgba(0,50,50,.25)','white','95vw');
 		fadeIn('main-banner');
@@ -220,6 +257,7 @@ function stayRight(mT,mM,mB) {
 		fiftyZeroFast('header-left-slider');
 		fiftyHundredFast('header-right-slider');
 		slideUpFast('right-button');
+		clickSlideML()
 		document.getElementById('main-right-content').style.display = "inline-block";
 		document.getElementById('main-banner').style.opacity = "0";
 		flipMessage(mT,mM,mB,'50px','rgba(204,255,0,1)','black','calc(95vw - 100px)');
