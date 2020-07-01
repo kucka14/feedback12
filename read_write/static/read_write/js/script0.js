@@ -36,25 +36,29 @@ function flipMessage(messageTop,messageMiddle,messageBottom,styleShift,styleColo
 }
 
 function flipCardColor() {
-	if (document.getElementById('cardlitmus').style.color == 'white') {
-		var all = document.getElementsByClassName('stbground');
-		for (var i = 0; i < all.length; i++) {
-		  all[i].style.backgroundColor = 'white';
+	var buttonUp1 = document.getElementById('right-button').classList.contains('slide-up');
+	var buttonUp2 = document.getElementById('right-button').classList.contains('slide-up-fast');
+	if (buttonUp1||buttonUp2) {
+		if (document.getElementById('cardlitmus').style.color == 'white') {
+			var all = document.getElementsByClassName('stbground');
+			for (var i = 0; i < all.length; i++) {
+			  all[i].style.backgroundColor = 'white';
+			}
+			var all = document.getElementsByClassName('sttext');
+			for (var i = 0; i < all.length; i++) {
+			  all[i].style.color = 'black';
+			}
+		} else if (document.getElementById('cardlitmus').style.color == 'black'){
+			var all = document.getElementsByClassName('stbground');
+			for (var i = 0; i < all.length; i++) {
+			  all[i].style.backgroundColor = '#336699';
+			}
+			var all = document.getElementsByClassName('sttext');
+			for (var i = 0; i < all.length; i++) {
+			  all[i].style.color = 'white';
+			}
+		} else {
 		}
-		var all = document.getElementsByClassName('sttext');
-		for (var i = 0; i < all.length; i++) {
-		  all[i].style.color = 'black';
-		}
-	} else if (document.getElementById('cardlitmus').style.color == 'black'){
-		var all = document.getElementsByClassName('stbground');
-		for (var i = 0; i < all.length; i++) {
-		  all[i].style.backgroundColor = '#336699';
-		}
-		var all = document.getElementsByClassName('sttext');
-		for (var i = 0; i < all.length; i++) {
-		  all[i].style.color = 'white';
-		}
-	} else {
 	}
 }
 

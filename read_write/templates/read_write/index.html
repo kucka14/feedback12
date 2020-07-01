@@ -113,7 +113,7 @@
 							  </div>
 					</div>
 			
-				<button id="right-button" onclick="slideLeft('{{message.message1.top}}','{{message.message1.middle}}','{{message.message1.bottom}}');flipCardColor();" type="button" class="btn btn-outline-light">Give Feedback</button>
+				<button id="right-button" onclick="flipCardColor();setTimeout(function(){slideLeft('{{message.message1.top}}','{{message.message1.middle}}','{{message.message1.bottom}}');},100);" type="button" class="btn btn-outline-light">Give Feedback</button>
 				<div id="main-right-content">
 					<div id="stories-title">
 						Stories
@@ -127,10 +127,10 @@
 					{% for story in story_list %}
 					<!-- Button trigger modal -->
 					<div class="card storybox">
-					  <div class="card-body stbground" style="background-color:#336699;">
-						<h5 id="cardlitmus" style="color:white;" class="card-title ctitle sttext">{{ story.title }}</h5>
-						<h6 style="color:white;" class="card-subtitle mb-2 sttext">{{ story.author }}</h6>
-						<p style="color:white;" class="card-text ctext sttext">{{ story.description }}</p>
+					  <div class="card-body stbground" style="background-color:white;">
+						<h5 id="cardlitmus" style="color:black;" class="card-title ctitle sttext">{{ story.title }}</h5>
+						<h6 style="color:black;" class="card-subtitle mb-2 sttext">{{ story.author }}</h6>
+						<p style="color:black;" class="card-text ctext sttext">{{ story.description }}</p>
 						<button id="right-modal-trigger" type="button" onclick="storyFill({{story.id}},`{{story.title}}`,`{{story.author}}`,`{{story.text}}`)" class="btn bluebtn" data-toggle="modal" data-target="#staticBackdropRight">
 							Read This Story
 						</button>
