@@ -309,6 +309,7 @@
 	width:50vw;
 	justify-content:center;
 	align-items:center;
+	margin-bottom:0px;
 }
 
 .main-right {
@@ -317,20 +318,19 @@
 	width:50vw;
 	justify-content:center;
 	align-items:center;
+	margin-bottom:0px;
 }
 
 #main-left-content {
 	display:none;
 	color:white;
 	position:absolute;
-	margin-bottom:0px;
 }
 
 #main-right-content {
 	display:none;
 	color:white;
 	position:absolute;
-	margin-bottom:0px;
 }
 
 .read-title {
