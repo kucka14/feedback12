@@ -135,12 +135,16 @@ function slideUp(buttonId) {
 	var target = document.getElementById(buttonId);
 	target.classList.remove("slide-down");
 	target.classList.remove("slide-up-fast");
+	document.getElementById("left-button").classList.remove("left-button");
+	document.getElementById("right-button").classList.remove("right-button");
 	target.classList.add("slide-up");
 }
 
 function slideUpFast(buttonId) {
 	var target = document.getElementById(buttonId);
 	target.classList.remove("slide-up");
+	document.getElementById("left-button").classList.remove("left-button");
+	document.getElementById("right-button").classList.remove("right-button");
 	target.classList.add("slide-up-fast");
 }
 
@@ -148,6 +152,8 @@ function slideDown(buttonId) {
 	var target = document.getElementById(buttonId);
 	target.classList.remove("slide-up");
 	target.classList.remove("slide-up-fast");
+	document.getElementById("left-button").classList.add("left-button");
+	document.getElementById("right-button").classList.add("right-button");
 	target.classList.add("slide-down");
 }
 
@@ -217,7 +223,7 @@ function leftMiddle(mT,mM,mB) {
 	zeroFifty('header-right-slider');
 	slideDown('left-button');
 	clickSlideRM()
-	document.getElementById('main-left-content').style.display = "none";
+	document.getElementById('main-left-content').style.display = "inline-block";
 	document.getElementById('main-banner').style.opacity = "0";
 	flipMessage(mT,mM,mB,'0px','rgba(0,50,50,.25)','white','95vw');
 	setTimeout(function(){fadeIn('main-banner');},1500);
