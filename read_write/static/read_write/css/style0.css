@@ -322,11 +322,15 @@
 #main-left-content {
 	display:none;
 	color:white;
+	position:absolute;
+	margin-bottom:0px;
 }
 
 #main-right-content {
 	display:none;
 	color:white;
+	position:absolute;
+	margin-bottom:0px;
 }
 
 .read-title {
@@ -518,12 +522,10 @@
 
 #right-button {
 	margin-bottom:30px;
-	position:absolute;
 }
 
 #left-button {
 	margin-bottom:30px;
-	position:absolute;
 }
 
 .right-button {
