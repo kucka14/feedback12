@@ -319,12 +319,14 @@ function showTempBoxLeft() {
 	var target = document.getElementById('tempboxleft')
 	target.classList.remove("hidden");
 	target.classList.add("store-story");
+	setTimeout(function(){target.classList.remove("store-story");target.classList.add("hidden");},7000);
 }
 
 function showTempBoxRight() {
 	var target = document.getElementById('tempboxright')
 	target.classList.remove("hidden");
 	target.classList.add("send-feedback");
+	setTimeout(function(){target.classList.remove("send-feedback");target.classList.add("hidden");},4000);
 }
 
 
