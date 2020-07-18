@@ -223,7 +223,7 @@ function leftMiddle(mT,mM,mB) {
 	zeroFifty('header-right-slider');
 	slideDown('left-button');
 	clickSlideRM()
-	document.getElementById('main-left-content').style.display = "inline-block";
+	document.getElementById('main-left-content').style.display = "none";
 	document.getElementById('main-banner').style.opacity = "0";
 	flipMessage(mT,mM,mB,'0px','rgba(0,50,50,.25)','white','95vw');
 	setTimeout(function(){fadeIn('main-banner');},1500);
