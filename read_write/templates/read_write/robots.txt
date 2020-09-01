@@ -1,1 +1,1 @@
-Sitemap: https://www.feedback12.com/sitemap.xml
+Sitemap: http://www.feedback12.com/sitemap.xml
