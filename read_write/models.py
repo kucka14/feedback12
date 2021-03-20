@@ -15,4 +15,4 @@ class Story(models.Model):
 	comments = models.TextField(default='---')
 	
 	def __str__(self):
-		return self.title
+		return f'{self.title}({self.id})'
