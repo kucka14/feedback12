@@ -297,9 +297,9 @@ function storyFill(id,title,author,text) {
 	var visibleTarget2 = document.getElementById('storyfillvisible2');
 	var visibleTarget3 = document.getElementById('storyfillvisible3');
 	hiddenTarget.setAttribute('value',id);
-	visibleTarget1.innerHTML = title;
-	visibleTarget2.innerHTML = 'By ' + author;
-	visibleTarget3.innerHTML = text;
+	visibleTarget1.innerHTML = title.replace('<', '&lt;');
+	visibleTarget2.innerHTML = 'By ' + author.replace('<', '&lt;');
+	visibleTarget3.innerHTML = text.replace('<', '&lt;');
 }
 
 function clickOther(clickTarget) {

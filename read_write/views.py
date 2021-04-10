@@ -27,8 +27,6 @@ def index(request):
 				author = write_form.cleaned_data['author']
 				text = write_form.cleaned_data['text']
 				description = write_form.cleaned_data['description']
-				for item in [title, author, text, description]:
-				    item = item.replace('<', '&lt;')
 				email = write_form.cleaned_data['email']
 				s = Story(title=title,author=author,text=text,description=description,email=email)
 				s.save()
