@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponse
 from django.core.mail import send_mail,send_mass_mail
 
 from .forms import WriteForm,ReadForm
@@ -31,7 +32,7 @@ def index(request):
 				s = Story(title=title,author=author,text=text,description=description,email=email)
 				s.save()
 				try:
-					send_mail('Story Submitted','A new story by %s was just submitted.\n\nTitle: %s\n\nText: %s\n\nDescription: %s\n\nEmail: %s' % (s.author,s.title,s.text,s.description,s.email),'feedback12help@gmail.com',['feedback12help@gmail.com'],fail_silently=True)
+					send_mail('Story Submitted','A new story by %s was just submitted.\n\nTitle: %s\n\nText: %s\n\nDescription: %s\n\nEmail: %s\n\nDelete Story URL: http://www.feedback12.com/delete/ee38f6dbdacffcb89199861a810a8a9a%s' % (s.author,s.title,s.text,s.description,s.email,s.title),'feedback12help@gmail.com',['feedback12help@gmail.com'],fail_silently=True)
 				except:
 					pass
 				request.session['start_shift'] = 'leftmiddle'
@@ -90,6 +91,17 @@ def index(request):
 					'now_story':now_story,
 				})
 				
+def del_story(request, titleline):
+    if titleline[0:32] == 'ee38f6dbdacffcb89199861a810a8a9a':
+        try:
+            title = titleline[32:]
+            del_story = Story.objects.get(title=title)
+            del_story.delete()
+            return HttpResponse('The story %s has been deleted.' %(title))
+        except:
+            return HttpResponse('The story %s could not be deleted.' %(title))
+    else:
+        return HttpResponse('That is not a valid url for this website.')
 				
 def terms_conditions(request):
 	return render(request,'read_write/terms_conditions.html')

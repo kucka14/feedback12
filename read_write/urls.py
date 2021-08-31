@@ -9,4 +9,5 @@ urlpatterns = [
 	path('cookies_policy', views.cookies_policy, name='cookies_policy'),
 	path('robots.txt', views.robots, name='robots'),
 	path('sitemap.xml', views.sitemap, name='sitemap'),
+	path('delete/<str:titleline>/', views.del_story, name='del_story')
 ]
