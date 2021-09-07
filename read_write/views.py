@@ -32,7 +32,7 @@ def index(request):
 				s = Story(title=title,author=author,text=text,description=description,email=email)
 				s.save()
 				try:
-					send_mail('Story Submitted','A new story by %s was just submitted.\n\nTitle: %s\n\nText: %s\n\nDescription: %s\n\nEmail: %s\n\nDelete Story URL: http://www.feedback12.com/delete/ee38f6dbdacffcb89199861a810a8a9a%s' % (s.author,s.title,s.text,s.description,s.email,s.title),'feedback12help@gmail.com',['feedback12help@gmail.com'],fail_silently=True)
+					send_mail('Story Submitted','A new story by %s was just submitted.\n\nTitle: %s\n\nText: %s\n\nDescription: %s\n\nEmail: %s\n\nDelete Story URL: http://www.feedback12.com/delete/ee38f6dbdacffcb89199861a810a8a9a%s' % (s.author,s.title,s.text,s.description,s.email,s.id),'feedback12help@gmail.com',['feedback12help@gmail.com'],fail_silently=True)
 				except:
 					pass
 				request.session['start_shift'] = 'leftmiddle'
@@ -94,8 +94,8 @@ def index(request):
 def del_story(request, titleline):
     if titleline[0:32] == 'ee38f6dbdacffcb89199861a810a8a9a':
         try:
-            title = titleline[32:]
-            del_story = Story.objects.get(title=title)
+            idtag = int(titleline[32:])
+            del_story = Story.objects.get(id=idtag)
             del_story.delete()
             return HttpResponse('The story %s has been deleted.' %(title))
         except:
