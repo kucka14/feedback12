@@ -97,9 +97,9 @@ def del_story(request, titleline):
             idtag = int(titleline[32:])
             del_story = Story.objects.get(id=idtag)
             del_story.delete()
-            return HttpResponse('The story %s has been deleted.' %(title))
+            return HttpResponse('The story %s has been deleted.' %(del_story.title))
         except:
-            return HttpResponse('The story %s could not be deleted.' %(title))
+            return HttpResponse('The story could not be deleted.')
     else:
         return HttpResponse('That is not a valid url for this website.')
 				
