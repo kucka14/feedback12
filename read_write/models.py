@@ -12,7 +12,9 @@ class Story(models.Model):
 	graded = models.BooleanField(default=False)
 	feedback_sent = models.BooleanField(default=False)
 	grade = models.IntegerField(default=0)
+	grade2 = models.IntegerField(default=0)
 	comments = models.TextField(default='---')
+	comments2 = models.TextField(default='---')
 	
 	def __str__(self):
 		return f'{self.title}({self.id})'

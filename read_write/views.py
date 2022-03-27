@@ -48,8 +48,8 @@ def index(request):
 				comments = read_form.cleaned_data['comments']
 				storyid = read_form.cleaned_data['storyid']
 				s = Story.objects.get(id=storyid)
-				s.grade = grade
-				s.comments = comments
+				s.grade2 = grade
+				s.comments2 = comments
 				try:
 					emailtuple = (
 						('Story Graded','The story %s was just graded.' % (s.title),'feedback12help@gmail.com',['feedback12help@gmail.com']),
@@ -62,7 +62,7 @@ def index(request):
 				s.graded = True
 				s.save()
 				request.session['start_shift'] = 'stayright'
-				request.session['now_story'] = {'title':s.title[0:20],'grade':s.grade,'comments':s.comments[0:50]}
+				request.session['now_story'] = {'title':s.title[0:20],'grade':s.grade2,'comments':s.comments2[0:50]}
 				return redirect('/')
 			else:
 				start_shift = 'popright'

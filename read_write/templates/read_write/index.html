@@ -163,45 +163,53 @@
 				</button>
 			  </div>
 			  <div class="modal-body">
-			  
-			  	
-				
-				<form action="" method="post">
-					{% csrf_token %}
-					<div class="general-error">{{ write_form.non_field_errors.as_text }}</div>
-					<div class="field-wrapper" style="margin-top:0px">
-						<div class="general-error">{{ write_form.title.errors.as_text }}</div>
-						Title: {{ write_form.title }}
-					</div>
-					<div class="field-wrapper">
-						<div class="general-error">{{ write_form.author.errors.as_text }}</div>
-						Author: {{ write_form.author }}
-					</div>
-					<div class="field-wrapper">
-						Text &nbsp<font color="lightgray">|</font>&nbsp Type or paste your story below (750 words or less)
-						<br>
-						<div style="font-size:12px">(We use the term story loosely. Fiction, nonfiction, and poetry are all encouraged.)</div>
-						<div class="general-error">{{ write_form.text.errors.as_text }}</div>
-						{{ write_form.text }}
-					</div>
-					<div class="field-wrapper">
-						<div class="general-error">{{ write_form.description.errors.as_text }}</div>
-						<div style="display:flex;flex-direction:columns">
-						<div style="width:110px">Description:<br><span style="font-size:12px;">(Your story in a sentence or two. Must be less than 100 characters.)</span></div><div style="width:7px;"></div><div>{{ write_form.description }}</div>
-						</div>
-					</div>
-					<div class="field-wrapper">
-						<div class="general-error">{{ write_form.email.errors.as_text }}</div>
-						Email: {{ write_form.email }}
-						<div style="font-size:12px;margin-top:3px;">(No one else will ever see your email address. We store your email so that feedback can be sent to you automatically. Emails are not used for any other purpose.)</div>
-					</div>
-					<input class="hidden" id="hiddensubmitleft" type="submit" name="write_submit">
-				</form>
-				
+			        Due to an excessive amount of spam, we have had to stop accepting stories in this way. 
+			        If you still want to submit a story, you can send it to feedback12help@gmail.com. 
+			        It will be screened and then placed on the site for others to see.
+			        <br><br>
+			        Also, if you like the site and have any suggestions for its improvement, please send them our way.
+			        <br><br>
+			        Cheers,<br>
+			        Feedback12
+<!--			  -->
+<!--			  	-->
+<!--				-->
+<!--				<form action="" method="post">-->
+<!--					{% csrf_token %}-->
+<!--					<div class="general-error">{{ write_form.non_field_errors.as_text }}</div>-->
+<!--					<div class="field-wrapper" style="margin-top:0px">-->
+<!--						<div class="general-error">{{ write_form.title.errors.as_text }}</div>-->
+<!--						Title: {{ write_form.title }}-->
+<!--					</div>-->
+<!--					<div class="field-wrapper">-->
+<!--						<div class="general-error">{{ write_form.author.errors.as_text }}</div>-->
+<!--						Author: {{ write_form.author }}-->
+<!--					</div>-->
+<!--					<div class="field-wrapper">-->
+<!--						Text &nbsp<font color="lightgray">|</font>&nbsp Type or paste your story below (750 words or less)-->
+<!--						<br>-->
+<!--						<div style="font-size:12px">(We use the term story loosely. Fiction, nonfiction, and poetry are all encouraged.)</div>-->
+<!--						<div class="general-error">{{ write_form.text.errors.as_text }}</div>-->
+<!--						{{ write_form.text }}-->
+<!--					</div>-->
+<!--					<div class="field-wrapper">-->
+<!--						<div class="general-error">{{ write_form.description.errors.as_text }}</div>-->
+<!--						<div style="display:flex;flex-direction:columns">-->
+<!--						<div style="width:110px">Description:<br><span style="font-size:12px;">(Your story in a sentence or two. Must be less than 100 characters.)</span></div><div style="width:7px;"></div><div>{{ write_form.description }}</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="field-wrapper">-->
+<!--						<div class="general-error">{{ write_form.email.errors.as_text }}</div>-->
+<!--						Email: {{ write_form.email }}-->
+<!--						<div style="font-size:12px;margin-top:3px;">(No one else will ever see your email address. We store your email so that feedback can be sent to you automatically. Emails are not used for any other purpose.)</div>-->
+<!--					</div>-->
+<!--					<input class="hidden" id="hiddensubmitleft" type="submit" name="write_submit">-->
+<!--				</form>-->
+<!--				-->
 			  </div>
 			  <div class="modal-footer mfooter">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn bluebtn" onclick="clickOther('hiddensubmitleft')">Submit</button>
+<!--				<button type="button" class="btn bluebtn" onclick="clickOther('hiddensubmitleft')">Submit</button>-->
 			  </div>
 			</div>
 		  </div>
