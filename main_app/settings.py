@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'so6t90i6sc3%xp_o8d&ko4q-fj4d2e*%v&7pzp!ah5#yiewr@f'
+SECRET_KEY = os.environ.get('FB_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd3jj22fjp9eh05',
         'USER': 'kfswqherndhwlw',
-        'PASSWORD': '3b2c4c1c39a0c1bcebaeabfefc8cf3f30ba99f3f2c0881faf5d3f245af7fdf10',
+        'PASSWORD': os.environ.get('FB_DATABASE_PASSWORD'),
         'HOST': 'ec2-18-210-214-86.compute-1.amazonaws.com',
         'PORT': '5432',
     }
@@ -138,7 +138,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'feedback12help@gmail.com'
-EMAIL_HOST_PASSWORD = 'kzanveqxygxuerku'
+EMAIL_HOST_PASSWORD = os.environ.get('FB_EMAIL_PASSWORD')
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
